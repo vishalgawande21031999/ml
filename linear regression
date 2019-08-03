@@ -1,0 +1,67 @@
+import numpy as np
+import math
+import statistics
+x=[]
+y=[]
+X=[]
+Y=[]
+x2=[]
+y2=[]
+xy=[]
+sum_x=0
+sum_y=0
+sum_x2=0
+sum_y2=0
+sum_xy=0
+M1=0
+M2=0
+b1=0
+b0=0
+print("number of values")
+n=int (input())
+print("enter x values")
+for i in range(0,n):
+    element= int(input())
+    X.append(element)
+M1=statistics.mean(X)
+print("enter y values")
+for i in range(0,n):
+    element2= int(input())
+    Y.append(element2)
+M2=statistics.mean(Y)
+for i in X:
+    q=i-M1
+    x.append(q)
+    x2.append(q*q)
+for i in Y:
+    w=i-M2
+    y.append(w)
+    y2.append(w*w)
+for i in range(0,n):
+    xy.append(y[i]*x[i])
+
+
+a=np.array([X])
+b=np.array([Y])
+c=np.array([x2])
+d=np.array([y2])
+e=np.array([xy])
+
+sum_x=np.sum(a)
+sum_y=np.sum(b)
+sum_x2=np.sum(c)
+sum_y2=np.sum(d)
+sum_xy=np.sum(e)
+b1=sum_xy/sum_x2
+b0=M2-b1*M1
+r=sum_xy/math.sqrt(sum_x2*sum_y2)
+
+R2=r*r
+print(r,b0,b1)
+if(r>0.1):
+    print("enter value of  x predict y")
+    x=int(input())
+    y=b0+b1*x
+    print(y)
+else:
+    print("regression can not used")
